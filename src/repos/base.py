@@ -39,5 +39,29 @@ __license__ = "Apache License, Version 2.0"
 
 import appier
 
+BASE_URL = "http://repos.bemisc.com/"
+""" The default base URL to be used when no other
+base URL value is provided to the constructor """
+
 class API(appier.API):
-    pass
+
+    def __init__(self, *args, **kwargs):
+        appier.API.__init__(self, *args, **kwargs)
+        self.base_url = appier.conf("REPOS_BASE_URL", BASE_URL)
+        self.username = appier.conf("REPOS_USERNAME", None)
+        self.password = appier.conf("REPOS_PASSWORD", None)
+        self.base_url = kwargs.get("base_url", self.base_url)
+        self.username = kwargs.get("username", self.username)
+        self.password = kwargs.get("password", self.password)
+        self._build_url()
+
+    def _build_url(self):
+        if not self.username:
+            raise appier.OperationalError(message = "No username provided")
+        if not self.password:
+            raise appier.OperationalError(message = "No password provided")
+        self.base_url = "https://%s:%s@%s/" % (
+            self.username,
+            self.password,
+            self.base_url
+        )
