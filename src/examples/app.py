@@ -60,6 +60,12 @@ class ReposApp(appier.WebApp):
         packages = api.list_packages()
         return packages
 
+    @appier.route("/packages/<str:name>/info", "GET")
+    def package_info(self, name):
+        api = self.get_api()
+        info = api.info_package(name)
+        return info
+
     def get_api(self):
         return base.get_api()
 

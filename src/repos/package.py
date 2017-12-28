@@ -43,3 +43,8 @@ class PackageAPI(object):
         url = self.base_url + "packages"
         contents = self.get(url, **kwargs)
         return contents
+
+    def info_package(self, name):
+        url = self.base_url + "packages/%s/info" % name
+        contents = self.get(url)
+        return contents
