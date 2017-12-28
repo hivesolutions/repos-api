@@ -60,10 +60,18 @@ class ReposApp(appier.WebApp):
         packages = api.list_packages()
         return packages
 
+    @appier.route("/packages/<str:name>", "GET")
+    def package_retrieve(self, name):
+        version = self.field("version", None)
+        api = self.get_api()
+        info = api.retrieve_package(name, version = version)
+        return self.send_file(info)
+
     @appier.route("/packages/<str:name>/info", "GET")
     def package_info(self, name):
+        version = self.field("version", None)
         api = self.get_api()
-        info = api.info_package(name)
+        info = api.info_package(name, version = version)
         return info
 
     def get_api(self):
