@@ -1,0 +1,7 @@
+*.pyc
+
+session.shelve*
+
+/dist
+/build
+/src/repos_api.egg-info
