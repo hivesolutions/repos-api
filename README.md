@@ -1,2 +1,3 @@
-# repos_api
-The Python API client to Repos
+# Repos API
+
+The Python API client to Repos.
