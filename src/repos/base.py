@@ -59,7 +59,6 @@ class API(
         self.username = kwargs.get("username", self.username)
         self.password = kwargs.get("password", self.password)
         self.session_id = kwargs.get("session_id", None)
-        self._build_url()
 
     def build(
         self,
@@ -100,17 +99,3 @@ class API(
         self.tokens = contents.get("tokens", None)
         self.trigger("auth", contents)
         return self.session_id
-
-    def _build_url(self):
-        if not self.username: return
-        if not self.password: return
-        if not self.base_url:
-            raise appier.OperationalError(message = "No base URL provided")
-        parsed = appier.legacy.urlparse(self.base_url)
-        self.base_url = "%s://%s:%s@%s%s" % (
-            parsed.scheme,
-            self.username,
-            self.password,
-            parsed.netloc,
-            parsed.path
-        )
