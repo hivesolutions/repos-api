@@ -37,19 +37,48 @@ __copyright__ = "Copyright (c) 2008-2017 Hive Solutions Lda."
 __license__ = "Apache License, Version 2.0"
 """ The license for the module """
 
+import json
+
+import appier
+
 class PackageAPI(object):
 
     def list_packages(self, *args, **kwargs):
         url = self.base_url + "packages"
-        contents = self.get(url, **kwargs)
+        contents = self.get(url, auth = False, **kwargs)
         return contents
 
     def retrieve_package(self, name, version):
         url = self.base_url + "packages/%s" % name
-        contents = self.get(url, version = version)
+        contents = self.get(url, version = version, auth = False)
+        return contents
+
+    def publish_package(
+        self,
+        name,
+        version,
+        contents,
+        identifier = None,
+        info = None,
+        type = None,
+        content_type = None
+    ):
+        url = self.base_url + "packages"
+        contents = self.post(
+            url,
+            data_m = dict(
+                name = name,
+                version = version,
+                contents = appier.FileTuple.from_data(contents),
+                identifier = identifier,
+                info = json.dumps(info),
+                type = type,
+                content_type = content_type
+            )
+        )
         return contents
 
     def info_package(self, name, version = None):
         url = self.base_url + "packages/%s/info" % name
-        contents = self.get(url, version = version)
+        contents = self.get(url, version = version, auth = False)
         return contents
