@@ -4,6 +4,10 @@ Simple [Repos](http://repos.hive.pt) Python API client.
 
 ## Configuration
 
+* `REPOS_BASE_URL` (`str`) - (defaults to `https://repos.bemisc.com/`)
+* `REPOS_USERNAME` (`str`) - (defaults to `None`)
+* `REPOS_PASSWORD` (`str`) - (defaults to `None`)
+
 ## License
 
 Repos API is currently licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/).
