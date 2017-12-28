@@ -39,10 +39,10 @@ __license__ = "Apache License, Version 2.0"
 
 import appier
 
-import prismic
+import repos
 
 def get_api():
-    return prismic.API(
+    return repos.API(
         base_url = appier.conf("REPOS_BASE_URL"),
         username = appier.conf("REPOS_USERNAME"),
         password = appier.conf("REPOS_PASSWORD")

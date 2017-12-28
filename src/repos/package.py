@@ -37,39 +37,9 @@ __copyright__ = "Copyright (c) 2008-2017 Hive Solutions Lda."
 __license__ = "Apache License, Version 2.0"
 """ The license for the module """
 
-import appier
+class PackageAPI(object):
 
-from . import package
-
-BASE_URL = "https://repos.bemisc.com/"
-""" The default base URL to be used when no other
-base URL value is provided to the constructor """
-
-class API(
-    appier.API,
-    package.PackageAPI
-):
-
-    def __init__(self, *args, **kwargs):
-        appier.API.__init__(self, *args, **kwargs)
-        self.base_url = appier.conf("REPOS_BASE_URL", BASE_URL)
-        self.username = appier.conf("REPOS_USERNAME", None)
-        self.password = appier.conf("REPOS_PASSWORD", None)
-        self.base_url = kwargs.get("base_url", self.base_url)
-        self.username = kwargs.get("username", self.username)
-        self.password = kwargs.get("password", self.password)
-        self._build_url()
-
-    def _build_url(self):
-        if not self.username: return
-        if not self.password: return
-        if not self.base_url:
-            raise appier.OperationalError(message = "No base URL provided")
-        parsed = appier.legacy.urlparse(self.base_url)
-        self.base_url = "%s://%s:%s@%s%s" % (
-            parsed.scheme,
-            self.username,
-            self.password,
-            parsed.netloc,
-            parsed.path
-        )
+    def list_packages(self, *args, **kwargs):
+        url = self.base_url + "packages"
+        contents = self.get(url, **kwargs)
+        return contents
