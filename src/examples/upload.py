@@ -41,7 +41,7 @@ from . import base
 
 if __name__ == "__main__":
     api = base.get_api()
-    api.publish_package(
+    info = api.publish_package(
         "hello",
         "test",
         contents = b"hello world",
@@ -50,5 +50,6 @@ if __name__ == "__main__":
         type = "text",
         content_type = "text/plain",
     )
+    print(info)
 else:
     __path__ = []
