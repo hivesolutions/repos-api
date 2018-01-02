@@ -57,14 +57,15 @@ class PackageAPI(object):
         self,
         name,
         version,
-        contents,
+        contents = None,
+        url = None,
         identifier = None,
         info = None,
         type = None,
         content_type = None
     ):
         url = self.base_url + "packages"
-        contents = contents if isinstance(contents, tuple) else\
+        contents = contents if isinstance(contents, tuple) or contents == None else\
             appier.FileTuple.from_data(contents)
         info = json.dumps(info)
         contents = self.post(
@@ -73,6 +74,7 @@ class PackageAPI(object):
                 name = name,
                 version = version,
                 contents = contents,
+                url = url,
                 identifier = identifier,
                 info = info,
                 type = type,
