@@ -44,7 +44,7 @@ if __name__ == "__main__":
     api.publish_package(
         "hello",
         "test",
-        b"hello world",
+        contents = b"hello world",
         identifier = "pt.hive.hello",
         info = dict(message = "hello world"),
         type = "text",
