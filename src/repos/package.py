@@ -87,3 +87,8 @@ class PackageAPI(object):
         url = self.base_url + "packages/%s/info" % name
         contents = self.get(url, version = version, auth = False)
         return contents
+
+    def artifacts_package(self, name, *args, **kwargs):
+        url = self.base_url + "packages/%s/artifacts" % name
+        contents = self.get(url, auth = False, **kwargs)
+        return contents
