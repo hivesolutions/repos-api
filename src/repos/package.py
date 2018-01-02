@@ -64,12 +64,12 @@ class PackageAPI(object):
         type = None,
         content_type = None
     ):
-        url = self.base_url + "packages"
+        _url = self.base_url + "packages"
         contents = contents if isinstance(contents, tuple) or contents == None else\
             appier.FileTuple.from_data(contents)
         info = json.dumps(info)
         contents = self.post(
-            url,
+            _url,
             data_m = dict(
                 name = name,
                 version = version,
