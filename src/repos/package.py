@@ -48,9 +48,15 @@ class PackageAPI(object):
         contents = self.get(url, auth = False, **kwargs)
         return contents
 
-    def retrieve_package(self, name, version = None):
+    def retrieve_package(self, name, version = None, extra = None):
         url = self.base_url + "packages/%s" % name
-        contents = self.get(url, version = version, auth = False)
+        contents = self.get(
+            url,
+            version = version,
+            auth = False,
+            redirect = True,
+            extra = extra
+        )
         return contents
 
     def publish_package(
