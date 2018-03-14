@@ -48,11 +48,12 @@ class PackageAPI(object):
         contents = self.get(url, auth = False, **kwargs)
         return contents
 
-    def retrieve_package(self, name, version = None, extra = None):
+    def retrieve_package(self, name, version = None, tag = None, extra = None):
         url = self.base_url + "packages/%s" % name
         contents = self.get(
             url,
             version = version,
+            tag = tag,
             auth = False,
             redirect = True,
             extra = extra
@@ -65,6 +66,7 @@ class PackageAPI(object):
         version,
         contents = None,
         url = None,
+        url_tags = None,
         identifier = None,
         info = None,
         type = None,
@@ -74,6 +76,7 @@ class PackageAPI(object):
         contents = contents if isinstance(contents, tuple) or contents == None else\
             appier.FileTuple.from_data(contents)
         info = json.dumps(info)
+        if url_tags: url_tags = ["%s:%s" (tag, url) for tag, url in appier.legacy.iteritems(url_tags)]
         contents = self.post(
             _url,
             data_m = dict(
@@ -81,6 +84,7 @@ class PackageAPI(object):
                 version = version,
                 contents = contents,
                 url = url,
+                url_tags = url_tags,
                 identifier = identifier,
                 info = info,
                 type = type,
