@@ -76,7 +76,7 @@ class PackageAPI(object):
         contents = contents if isinstance(contents, tuple) or contents == None else\
             appier.FileTuple.from_data(contents)
         info = json.dumps(info)
-        if url_tags: url_tags = ["%s:%s" (tag, url) for tag, url in appier.legacy.iteritems(url_tags)]
+        if url_tags: url_tags = ["%s:%s" % (tag, url) for tag, url in appier.legacy.iteritems(url_tags)]
         contents = self.post(
             _url,
             data_m = dict(
