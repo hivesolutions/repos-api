@@ -48,11 +48,19 @@ class PackageAPI(object):
         contents = self.get(url, auth = False, **kwargs)
         return contents
 
-    def retrieve_package(self, name, version = None, tag = None, extra = None):
+    def retrieve_package(
+        self,
+        name,
+        version = None,
+        branch = None,
+        tag = None,
+        extra = None
+    ):
         url = self.base_url + "packages/%s" % name
         contents = self.get(
             url,
             version = version,
+            branch = branch,
             tag = tag,
             auth = False,
             redirect = True,
@@ -64,6 +72,7 @@ class PackageAPI(object):
         self,
         name,
         version,
+        branch = None,
         contents = None,
         url = None,
         url_tags = None,
@@ -82,6 +91,7 @@ class PackageAPI(object):
             data_m = dict(
                 name = name,
                 version = version,
+                branch = branch,
                 contents = contents,
                 url = url,
                 url_tags = url_tags,
