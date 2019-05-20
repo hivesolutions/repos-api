@@ -4,9 +4,11 @@ Simple [Repos](http://repos.hive.pt) Python API client.
 
 ## Configuration
 
-* `REPOS_BASE_URL` (`str`) - The base URL to be used in the API requests (defaults to `https://repos.bemisc.com/`)
-* `REPOS_USERNAME` (`str`) - If set allows usage of an HTTP Auth username to authenticate requests (defaults to `None`)
-* `REPOS_PASSWORD` (`str`) - If set allows usage of an HTTP Auth password to authenticate requests (defaults to `None`)
+| Name | Type | Description |
+| ----- | ----- | ----- |
+| **REPOS_BASE_URL** | `str` | The base URL to be used in the API requests (defaults to `https://repos.bemisc.com/`). |
+| **REPOS_USERNAME** | `str` | If set allows usage of an HTTP Auth username to authenticate requests (defaults to `None`). |
+| **REPOS_PASSWORD** | `str` | If set allows usage of an HTTP Auth password to authenticate requests (defaults to `None`). |
 
 ## License
 
