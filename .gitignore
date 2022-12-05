@@ -4,4 +4,4 @@ session.shelve*
 
 /dist
 /build
-/src/repos-api.egg-info
+/src/repos_api.egg-info
