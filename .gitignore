@@ -2,6 +2,8 @@
 
 session.shelve*
 
+/.venv
+
 /dist
 /build
 /src/repos_api.egg-info

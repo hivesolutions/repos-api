@@ -1,23 +1,23 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# Hive Prismic API
+# Hive Repos API
 # Copyright (c) 2008-2025 Hive Solutions Lda.
 #
-# This file is part of Hive Prismic API.
+# This file is part of Hive Repos API.
 #
-# Hive Prismic API is free software: you can redistribute it and/or modify
+# Hive Repos API is free software: you can redistribute it and/or modify
 # it under the terms of the Apache License as published by the Apache
 # Foundation, either version 2.0 of the License, or (at your option) any
 # later version.
 #
-# Hive Prismic API is distributed in the hope that it will be useful,
+# Hive Repos API is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # Apache License for more details.
 #
 # You should have received a copy of the Apache License along with
-# Hive Prismic API. If not, see <http://www.apache.org/licenses/>.
+# Hive Repos API. If not, see <http://www.apache.org/licenses/>.
 
 __author__ = "João Magalhães <joamag@hive.pt>"
 """ The author(s) of the module """
@@ -28,19 +28,10 @@ __copyright__ = "Copyright (c) 2008-2025 Hive Solutions Lda."
 __license__ = "Apache License, Version 2.0"
 """ The license for the module """
 
-from . import base
+import unittest
 
-if __name__ == "__main__":
-    api = base.get_api()
-    info = api.publish_package(
-        "hello",
-        "test",
-        contents=b"hello world",
-        identifier="pt.hive.hello",
-        info=dict(message="hello world"),
-        type="text",
-        content_type="text/plain",
-    )
-    print(info)
-else:
-    __path__ = []
+
+class BaseTest(unittest.TestCase):
+
+    def test_basic(self):
+        self.assertEqual(1 + 1, 2)
