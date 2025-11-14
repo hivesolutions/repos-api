@@ -42,6 +42,7 @@ setuptools.setup(
     url="http://repos-api.hive.pt",
     zip_safe=False,
     packages=["repos"],
+    test_suite="repos.test",
     package_dir={"": os.path.normpath("src")},
     install_requires=["appier"],
     classifiers=[
